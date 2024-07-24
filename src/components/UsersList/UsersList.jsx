@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
-import s from "./UserList.module.css";
+import s from "./UsersList.module.css";
 
-const UserList = ({ users = [] }) => {
+const UsersList = ({ users = [] }) => {
   return (
     <div>
-      <ul>
+      <h2>Users</h2>
+
+      <ul className={s.list}>
         {users.map((user) => (
           <li key={user.id}>
             <Link to={user.id.toString()}>
@@ -16,5 +18,4 @@ const UserList = ({ users = [] }) => {
     </div>
   );
 };
-
-export default UserList;
+export default UsersList;

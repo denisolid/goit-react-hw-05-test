@@ -1,4 +1,4 @@
-import s from "./ImageGallery.module.css";
+import s from "./UserList.module.css";
 
 const UserList = ({ users = [] }) => {
   return (

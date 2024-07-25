@@ -4,18 +4,16 @@ import { fetchUsersById } from "../../services/api";
 
 const UserAddress = () => {
   const params = useParams();
-  const [user, setUser] = useState(null); // изменено на null, чтобы избежать ошибок с .map
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     fetchUsersById(params.userId).then((data) => setUser(data));
   }, [params.userId]);
 
-  // Проверьте, загружены ли данные пользователя
   if (!user) {
     return <p>Loading...</p>;
   }
 
-  // Проверьте, есть ли адрес
   if (!user.address) {
     return <p>No address available</p>;
   }

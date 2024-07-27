@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [filterValue, setFilterValue] = useState("");
+  const filterValue = searchParams.get("query");
   const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     try {
@@ -22,8 +22,9 @@ const Users = () => {
   }, []);
 
   const handleChangeFilter = (newValue) => {
-    setFilterValue(newValue);
     searchParams.set("query", newValue);
+    searchParams.set("page", 1);
+    searchParams.set("limit", 5);
     setSearchParams(searchParams);
   };
 

@@ -14,15 +14,15 @@ const UserDetails = () => {
   const params = useParams();
   console.log(params);
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const location = useLocation();
   const goBackRef = useRef(location?.state || "/users");
 
-  useEffect(() => {
-    setTimeout(() => {
-      navigate("/users");
-    }, 15000);
-  }, [navigate]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     navigate("/users");
+  //   }, 15000);
+  // }, [navigate]);
 
   useEffect(() => {
     fetchUsersById(params.userId).then((data) => setUser(data));

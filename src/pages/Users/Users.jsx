@@ -6,8 +6,8 @@ import { useSearchParams } from "react-router-dom";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const filterValue = searchParams.get("query");
   const [searchParams, setSearchParams] = useSearchParams();
+  const filterValue = searchParams.get("query") ?? "";
   useEffect(() => {
     try {
       const getData = async () => {
@@ -22,17 +22,18 @@ const Users = () => {
   }, []);
 
   const handleChangeFilter = (newValue) => {
+    if (!newValue) {
+      return setSearchParams({});
+    }
     searchParams.set("query", newValue);
-    searchParams.set("page", 1);
-    searchParams.set("limit", 5);
+
     setSearchParams(searchParams);
   };
 
-  const filteredData = users.filter((user) =>
-    user.firstName.includes(
-      filterValue.toLowerCase() ||
-        user.lastName.includes(filterValue.toLowerCase())
-    )
+  const filteredData = users.filter(
+    (user) =>
+      user.firstName.toLowerCase().includes(filterValue.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(filterValue.toLowerCase())
   );
 
   return (
